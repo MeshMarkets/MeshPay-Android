@@ -18,6 +18,15 @@ class EscrowsResource(private val api: ApiClient) {
     fun release(escrowId: String, idempotencyKey: String): JsonObject =
         api.postJson("/escrows/$escrowId/release", buildJsonObject { }, idempotencyKey)
 
+    fun createContribution(escrowId: String, body: JsonObject, idempotencyKey: String): JsonObject =
+        api.postJson("/escrows/$escrowId/contributions", body, idempotencyKey)
+
+    fun setPayee(escrowId: String, body: JsonObject, idempotencyKey: String): JsonObject =
+        api.postJson("/escrows/$escrowId/set-payee", body, idempotencyKey)
+
+    fun cancelPooledEscrow(escrowId: String, idempotencyKey: String): JsonObject =
+        api.postJson("/escrows/$escrowId/cancel-pool", buildJsonObject { }, idempotencyKey)
+
     fun openDispute(escrowId: String, txHash: String): JsonObject =
         api.postJson(
             "/escrows/$escrowId/open-dispute",

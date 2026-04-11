@@ -18,6 +18,9 @@ class ChargesResource(private val api: ApiClient) {
     fun create(body: JsonObject, idempotencyKey: String): JsonObject =
         api.postJson("/charges", body, idempotencyKey)
 
+    fun createPooledCharge(body: JsonObject, idempotencyKey: String): JsonObject =
+        api.postJson("/pooled-charges", body, idempotencyKey)
+
     fun fund(chargeId: String, body: JsonObject, idempotencyKey: String): JsonObject =
         api.postJson("/charges/$chargeId/fund", body, idempotencyKey)
 
